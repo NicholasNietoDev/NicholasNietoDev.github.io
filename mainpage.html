@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aroarah Thunder - Pageant Royalty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #2c2c2c;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+        
+        .nav-links a {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #d4af37, #ffd700);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="elegantPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23elegantPattern)"/></svg>');
+        }
+        
+        .hero-content {
+            z-index: 2;
+            color: white;
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .hero-tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            font-style: italic;
+            opacity: 0.8;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #1a1a1a;
+            text-decoration: none;
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4);
+            background: linear-gradient(135deg, #ffd700, #d4af37);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 120px 0;
+            background: #fafafa;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #1a1a1a;
+            font-weight: 400;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #d4af37, #ffd700);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 5rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            border-top: 3px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+            border-top: 3px solid #d4af37;
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #d4af37;
+        }
+        
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 120px 0;
+            background: white;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+            font-weight: 400;
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.8rem;
+            color: #555;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .achievement {
+            text-align: center;
+            padding: 1.5rem;
+            background: #fafafa;
+            border-left: 3px solid #d4af37;
+        }
+        
+        .achievement-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #d4af37;
+            display: block;
+        }
+        
+        .achievement-text {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .about-image {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d4af37;
+            font-size: 4rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        /* Pageants Section */
+        .pageants {
+            padding: 120px 0;
+            background: #1a1a1a;
+            color: white;
+        }
+        
+        .pageants .section-title {
+            color: white;
+        }
+        
+        .pageants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .pageant-card {
+            background: rgba(255,255,255,0.05);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .pageant-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-5px);
+        }
+        
+        .pageant-year {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+        }
+        
+        .pageant-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .pageant-result {
+            color: #d4af37;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            padding: 120px 0;
+            background: #fafafa;
+            text-align: center;
+        }
+        
+        .testimonial-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 4rem 3rem;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        
+        .quote-icon {
+            font-size: 3rem;
+            color: #d4af37;
+            margin-bottom: 2rem;
+        }
+        
+        .testimonial-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            margin-bottom: 2.5rem;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        
+        .testimonial-title {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+        
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .contact-button {
+            padding: 18px 35px;
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            border: 2px solid #d4af37;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        
+        .contact-button:hover {
+            background: #d4af37;
+            color: #1a1a1a;
+            transform: translateY(-2px);
+        }
+        
+        .contact-button.primary {
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #1a1a1a;
+            border: none;
+        }
+        
+        .contact-button.primary:hover {
+            background: linear-gradient(135deg, #ffd700, #d4af37);
+        }
+        
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        footer p {
+            opacity: 0.7;
+            font-weight: 300;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .achievements {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Aroarah Thunder</div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#pageants">Pageants</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Aroarah Thunder</h1>
+            <p class="hero-subtitle">Pageant Royalty • Performance Artist • Entertainment Professional</p>
+            <p class="hero-tagline">"Grace, Elegance, and Commanding Presence"</p>
+            <a href="#contact" class="cta-button">Book Performance</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Professional Services</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">👑</div>
+                    <h3>Pageant Coaching</h3>
+                    <p>Professional guidance in presentation, stage presence, interview skills, and competition preparation from a seasoned pageant competitor.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎭</div>
+                    <h3>Corporate Entertainment</h3>
+                    <p>Sophisticated performance entertainment for corporate events, galas, and upscale private functions with tailored content and professional delivery.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🌟</div>
+                    <h3>Pageant Judging</h3>
+                    <p>Expert judging services for drag pageants and competitions, bringing years of experience and industry knowledge to your event.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎪</div>
+                    <h3>Special Events</h3>
+                    <p>Curated performances for charity galas, fundraisers, and milestone celebrations with elegant artistry and professional presentation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h2>Artistry Meets Excellence</h2>
+                    <p>Aroarah Thunder represents the pinnacle of drag artistry, combining classical elegance with contemporary performance excellence. With a distinguished career spanning multiple pageant victories and countless memorable performances.</p>
+                    <p>Every appearance is meticulously crafted, from custom couture gowns to carefully choreographed numbers that showcase both technical skill and emotional depth. This commitment to excellence has earned recognition throughout the pageant circuit.</p>
+                    <div class="achievements">
+                        <div class="achievement">
+                            <span class="achievement-number">15+</span>
+                            <span class="achievement-text">Pageant Titles</span>
+                        </div>
+                        <div class="achievement">
+                            <span class="achievement-number">200+</span>
+                            <span class="achievement-text">Performances</span>
+                        </div>
+                        <div class="achievement">
+                            <span class="achievement-number">8</span>
+                            <span class="achievement-text">Years Experience</span>
+                        </div>
+                        <div class="achievement">
+                            <span class="achievement-number">50+</span>
+                            <span class="achievement-text">Students Coached</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image fade-in">
+                    ⚡👑⚡
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pageants Section -->
+    <section class="pageants" id="pageants">
+        <div class="container">
+            <h2 class="section-title">Competition History</h2>
+            <div class="pageants-grid">
+                <div class="pageant-card fade-in">
+                    <div class="pageant-year">2024</div>
+                    <h3 class="pageant-title">Miss Drag Universe Regional</h3>
+                    <p class="pageant-result">First Runner-Up</p>
+                </div>
+                <div class="pageant-card fade-in">
+                    <div class="pageant-year">2023</div>
+                    <h3 class="pageant-title">Continental Elite</h3>
+                    <p class="pageant-result">Winner</p>
+                </div>
+                <div class="pageant-card fade-in">
+                    <div class="pageant-year">2023</div>
+                    <h3 class="pageant-title">National Entertainer of the Year</h3>
+                    <p class="pageant-result">Top 5</p>
+                </div>
+                <div class="pageant-card fade-in">
+                    <div class="pageant-year">2022</div>
+                    <h3 class="pageant-title">State Pageant Champion</h3>
+                    <p class="pageant-result">Winner</p>
+                </div>
+                <div class="pageant-card fade-in">
+                    <div class="pageant-year">2022</div>
+                    <h3 class="pageant-title">Regional Talent Supreme</h3>
+                    <p class="pageant-result">Winner</p>
+                </div>
+                <div class="pageant-card fade-in">
+                    <div class="pageant-year">2021</div>
+                    <h3 class="pageant-title">City Crown Pageant</h3>
+                    <p class="pageant-result">Winner</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Client Testimonials</h2>
+            <div class="testimonial-card fade-in">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">Aroarah Thunder brought an unparalleled level of sophistication and professionalism to our annual charity gala. Her performance was both captivating and appropriate for our distinguished audience. The feedback from our board members was overwhelmingly positive.</p>
+                <p class="testimonial-author">Victoria Sterling</p>
+                <p class="testimonial-title">Event Director, Metropolitan Arts Foundation</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Professional Bookings</h2>
+            <p>Available for select engagements and professional appearances</p>
+            <div class="contact-buttons">
+                <a href="mailto:bookings@aroarahthunder.com" class="contact-button primary">Email Inquiry</a>
+                <a href="#" class="contact-button">View Portfolio</a>
+                <a href="#" class="contact-button">Performance Reel</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aroarah Thunder. Professional Entertainment Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navigation background on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
